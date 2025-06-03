@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Writer - Local LLM Content Generator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-pen-fancy"></i> AI Writer</h1>
+                <p>Generate content using your local LLM</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="input-section">
+                <div class="form-group">
+                    <label for="contentType">Content Type</label>
+                    <select id="contentType" class="form-control">
+                        <option value="blog-intro">📝 Blog Introduction</option>
+                        <option value="tweet">🐦 Tweet</option>
+                        <option value="story">📚 Short Story</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="prompt">Topic/Prompt</label>
+                    <textarea id="prompt" class="form-control" placeholder="Enter your topic or prompt here..." rows="3"></textarea>
+                </div>
+
+                <div class="settings-row">
+                    <div class="form-group">
+                        <label for="model">Model</label>
+                        <select id="model" class="form-control">
+                            <option value="phi">Phi</option>
+                            <option value="tinyllama">TinyLlama</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="temperature">Temperature: <span id="tempValue">0.7</span></label>
+                        <input type="range" id="temperature" class="form-control" min="0" max="1" step="0.1" value="0.7">
+                    </div>
+                </div>
+
+                <button id="generateBtn" class="generate-btn">
+                    <i class="fas fa-magic"></i> Generate Content
+                </button>
+            </div>
+
+            <div class="output-section">
+                <div class="output-header">
+                    <h3>Generated Content</h3>
+                    <div class="output-actions">
+                        <button id="copyBtn" class="action-btn" title="Copy to clipboard">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <button id="clearBtn" class="action-btn" title="Clear output">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="output" class="output-content">
+                    <div class="placeholder">
+                        <i class="fas fa-lightbulb"></i>
+                        <p>Your generated content will appear here...</p>
+                    </div>
+                </div>
+                <div id="outputInfo" class="output-info"></div>
+            </div>
+
+            <div class="history-section">
+                <h3>Recent Outputs</h3>
+                <div id="history" class="history-content">
+                    <div class="placeholder">
+                        <i class="fas fa-history"></i>
+                        <p>Your generation history will appear here...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Generating content with your local LLM...</p>
+        </div>
+    </div>
+
+    <!-- Toast notifications -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
